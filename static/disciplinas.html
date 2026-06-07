@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Intranet — Disciplinas</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 24px; }
+
+    header {
+      background: white; padding: 16px 24px; border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 18px; color: #333; margin: 0; }
+    .nav a { text-decoration: none; color: #4f46e5; font-size: 14px; margin-left: 16px; }
+    button.sair {
+      background: none; border: 1px solid #ddd; padding: 6px 14px;
+      border-radius: 8px; cursor: pointer; font-size: 13px; color: #666;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: white; border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      overflow: hidden; cursor: pointer;
+      transition: transform 0.2s;
+    }
+    .card:hover { transform: translateY(-2px); }
+
+    .card-header {
+      padding: 20px; border-bottom: 1px solid #f0f0f0;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .icone { font-size: 28px; }
+    .card-header h2 { font-size: 16px; margin: 0; color: #333; }
+    .card-header p { font-size: 13px; color: #888; margin: 4px 0 0; }
+
+    .card-body { padding: 16px 20px; }
+
+    .temas { list-style: none; padding: 0; margin: 0 0 12px; }
+    .temas li {
+      font-size: 13px; color: #555; padding: 4px 0;
+      border-bottom: 1px solid #f5f5f5;
+    }
+    .temas li::before { content: "→ "; color: #4f46e5; }
+
+    .secao { margin-top: 16px; }
+    .secao h3 { font-size: 13px; color: #999; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+
+    .material a {
+      display: block; font-size: 13px; color: #4f46e5;
+      text-decoration: none; padding: 4px 0;
+    }
+    .material a:hover { text-decoration: underline; }
+
+    .quiz-item {
+      background: #f8f9ff; border-radius: 8px;
+      padding: 12px; margin-bottom: 8px;
+    }
+    .quiz-pergunta { font-size: 13px; font-weight: 500; color: #333; margin-bottom: 6px; }
+    .quiz-resposta {
+      font-size: 12px; color: #666; display: none;
+      border-top: 1px solid #e8e8f0; padding-top: 6px; margin-top: 6px;
+    }
+    .ver-resposta {
+      font-size: 11px; color: #4f46e5; cursor: pointer;
+      background: none; border: none; padding: 0;
+    }
+
+    .anotacao textarea {
+      width: 100%; box-sizing: border-box;
+      border: 1px solid #ddd; border-radius: 8px;
+      padding: 10px; font-size: 13px; font-family: sans-serif;
+      resize: vertical; min-height: 80px; color: #333;
+    }
+    .salvar-nota {
+      margin-top: 6px; background: #4f46e5; color: white;
+      border: none; padding: 6px 14px; border-radius: 8px;
+      cursor: pointer; font-size: 12px;
+    }
+    .salvo { font-size: 11px; color: green; margin-left: 8px; display: none; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏫 Intranet</h1>
+  <nav class="nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/documentacao">📄 Documentação</a>
+  </nav>
+  <button class="sair" onclick="sair()">Sair</button>
+</header>
+
+<div class="grid" id="grid">
+  <p style="color:#999">Carregando disciplinas...</p>
+</div>
+
+<script>
+async function carregar() {
+  const resp = await fetch('/api/disciplinas', { credentials: 'include' });
+  if (resp.status === 401) { window.location.href = '/'; return; }
+
+  const disciplinas = await resp.json();
+  const grid = document.getElementById('grid');
+
+  grid.innerHTML = disciplinas.map(d => `
+     <div class="card">
+      <div class="card-header" onclick="irPara(d.nome)" style="cursor:pointer">
+      <span class="icone">${d.icone}</span>
+        <div>
+          <h2>${d.nome}</h2>
+          <p>${d.descricao}</p>
+        </div>
+      </div>
+      <div class="card-body">
+          <div class="secao">
+          <h3>📚 Temas</h3>
+          <ul class="temas">
+          ${d.temas.map(t => `<li onclick="irPara('${slugify(d.nome)}')" style="cursor:pointer">${t}</li>`).join('')}  
+            </div>
+
+        <div class="secao">
+          <h3>🔗 Materiais</h3>
+          <div class="material">
+            ${d.materiais.map(m => `<a href="${m.url}" target="_blank">↗ ${m.titulo}</a>`).join('')}
+          </div>
+        </div>
+
+        <div class="secao">
+          <h3>❓ Quizzes</h3>
+          ${d.quizzes.map((q, i) => `
+            <div class="quiz-item">
+              <div class="quiz-pergunta">${q.pergunta}</div>
+              <button class="ver-resposta" onclick="toggleResposta(this)">Ver resposta</button>
+              <div class="quiz-resposta">${q.resposta}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <div class="secao anotacao">
+          <h3>📝 Minhas anotações</h3>
+          <textarea id="nota-${d.id}" placeholder="Escreva suas anotações aqui...">${localStorage.getItem('nota-' + d.id) || ''}</textarea>
+          <br>
+          <button class="salvar-nota" onclick="salvarNota(${d.id})">Salvar</button>
+          <span class="salvo" id="salvo-${d.id}">✓ Salvo!</span>
+        </div>
+
+      </div>
+    </div>
+  `).join('');
+}
+function slugify(nome) {
+  return nome.toLowerCase()
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]/g, '');
+}
+
+function irPara(nome) {
+  window.location.href = '/disciplinas/' + slugify(nome);
+}
+
+function toggleResposta(btn) {
+  const resposta = btn.nextElementSibling;
+  const visivel = resposta.style.display === 'block';
+  resposta.style.display = visivel ? 'none' : 'block';
+  btn.textContent = visivel ? 'Ver resposta' : 'Ocultar resposta';
+}
+
+async function carregarNota(id) {
+  const resp = await fetch(`/api/anotacoes/${id}`, { credentials: 'include' });
+  const dados = await resp.json();
+  const textarea = document.getElementById('nota-' + id);
+  if (textarea) textarea.value = dados.texto;
+}
+
+async function salvarNota(id) {
+  const texto = document.getElementById('nota-' + id).value;
+  const resp = await fetch(`/api/anotacoes/${id}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ texto }),
+    credentials: 'include'
+  });
+  if (resp.ok) {
+    const salvo = document.getElementById('salvo-' + id);
+    salvo.style.display = 'inline';
+    setTimeout(() => salvo.style.display = 'none', 2000);
+  }
+}
+async function sair() {
+  await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+  window.location.href = '/';
+}
+
+carregar();
+</script>
+</body>
+</html>

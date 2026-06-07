@@ -1,0 +1,20 @@
+[
+  {
+    "id": 101,
+    "nome": "Patrícia Silva",
+    "email": "patricia@intranet.com",
+    "senha": "1234",
+    "unidade": "Sede Curitiba",
+    "interesses": ["Tecnologia", "Logística", "Gestão"],
+    "admin": true
+  },
+  {
+    "id": 102,
+    "nome": "Carlos Mendes",
+    "email": "carlos@intranet.com",
+    "senha": "1234",
+    "unidade": "CD Joinville",
+    "interesses": ["Segurança", "Operacional"],
+    "admin": false
+  }
+]

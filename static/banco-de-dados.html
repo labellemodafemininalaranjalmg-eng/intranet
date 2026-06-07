@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banco de Dados - Detalhes</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header-disciplina">
+            <a href="disciplinas.html" class="btn-voltar">← Voltar para Disciplinas</a>
+            <h1>💾 Banco de Dados</h1>
+            <p>Projetos de bancos de dados relacionais, modelagem conceitual e linguagem estruturada SQL.</p>
+        </header>
+
+        <main class="conteudo-principal">
+            <aside class="sidebar-temas">
+                <h3>📚 Tópicos da Disciplina</h3>
+                <ul id="lista-temas">
+                    <li><a href="#conceitos-sgbd" class="aba-tema">Conceitos de SGBDs</a></li>
+                    <li><a href="#modelagem-der" class="aba-tema">Modelagem DER</a></li>
+                    <li><a href="#normalizacao-dados" class="aba-tema">Normalização (1FN, 2FN, 3FN)</a></li>
+                    <li><a href="#sql-ddl" class="aba-tema">Comandos SQL DDL</a></li>
+                    <li><a href="#sql-dml" class="aba-tema">Comandos SQL DML</a></li>
+                </ul>
+            </aside>
+
+            <section class="painel-leitura">
+                <div id="bloco-texto-tema">
+                    <h2>Selecione um tema ao lado para começar os estudos.</h2>
+                </div>
+
+                <div class="card-quiz-interno">
+                    <h3>❓ Teste seu Conhecimento</h3>
+                    <div id="quiz-dinamico">
+                        <p id="pergunta-txt">Clique em um tema para carregar o desafio.</p>
+                        <button id="btn-revelar-resposta" style="display:none;">Ver resposta</button>
+                        <p id="resposta-txt" style="display:none; color: var(--accent); margin-top: 10px;"></p>
+                    </div>
+                </div>
+
+                <div class="secao-anotacoes-interna">
+                    <h3>📝 Minhas Anotações Práticas</h3>
+                    <textarea id="txt-anotacao" placeholder="Digite comandos SQL ou resumos para fixação..."></textarea>
+                    <button id="btn-salvar-anotacao" class="btn-salvar">Salvar Anotação</button>
+                    <span id="msg-status-salvamento"></span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        const conteudosBD = {
+            "conceitos-sgbd": {
+                titulo: "Conceitos de Bancos de Dados e SGBDs",
+                texto: "<p>Um Banco de Dados é uma coleção organizada de dados estruturados. Para gerenciar, acessar e garantir a segurança desses arquivos, utilizamos um software especializado chamado <strong>SGBD</strong> (Sistema Gerenciador de Banco de Dados), como MySQL, PostgreSQL e o SQLite.</p>",
+                pergunta: "Qual o papel principal de um SGBD na infraestrutura de software?",
+                resposta: "Garantir uma interface segura e eficiente para armazenar, buscar, atualizar e deletar dados de forma consistente, protegendo a integridade das informações contra falhas e acessos não autorizados."
+            },
+            "modelagem-der": {
+                titulo: "Modelagem Entidade-Relacionamento (DER)",
+                texto: "<p>Antes de codificar as tabelas, criamos a estrutura abstrata utilizando o <strong>Diagrama Entidade-Relacionamento (DER)</strong>. Identificamos as <em>Entidades</em> (objetos do mundo real, como 'Colaborador'), seus <em>Atributos</em> (características, como 'Nome') e como elas interagem entre si por meio de <em>Relacionamentos</em> e cardinalidades (1:1, 1:N, N:M).</p>",
+                pergunta: "Em modelagem relacional, o que representa a cardinalidade?",
+                resposta: "Determina a quantidade numérica máxima e mínima de ocorrências de uma entidade que podem estar associadas a uma ocorrência de outra entidade (ex: Um departamento pode conter N colaboradores)."
+            },
+            "normalizacao-dados": {
+                titulo: "Normalização de Dados (1FN, 2FN e 3FN)",
+                texto: "<p>A Normalização é a aplicação de regras formais na estrutura das tabelas para <strong>eliminar redundâncias de dados</strong> e evitar anomalias de atualização. Dividimos o processo em estágios conhecidos como Formas Normais: Primeira Forma Normal (1FN), Segunda (2FN) e Terceira (3FN).</p>",
+                pergunta: "Qual o grande objetivo prático de normalizar um banco de dados?",
+                resposta: "Evitar a duplicação desnecessária de dados nas tabelas, reduzindo o espaço de armazenamento e mitigando erros e inconsistências ao atualizar registros do sistema."
+            },
+            "sql-ddl": {
+                titulo: "Linguagem SQL: Comandos DDL (Data Definition Language)",
+                texto: "<p>O subconjunto **DDL** do SQL é encarregado de definir, alterar e gerenciar a estrutura física do banco. Os comandos principais trabalham com objetos do banco (tabelas, índices): <code>CREATE TABLE</code> (cria), <code>ALTER TABLE</code> (modifica a estrutura) e <code>DROP TABLE</code> (exclui a tabela inteira do banco).</p>",
+                pergunta: "Dê um exemplo prático de aplicação de um comando DDL.",
+                resposta: "CREATE TABLE colaboradores (id INTEGER PRIMARY KEY, nome TEXT, unidade TEXT); — este comando define a estrutura física e os tipos de dados da nova tabela."
+            },
+            "sql-dml": {
+                titulo: "Linguagem SQL: Comandos DML (Data Manipulation Language)",
+                texto: "<p>O subconjunto **DML** gerencia o conteúdo armazenado dentro das tabelas criadas pela DDL. É o coração das operações de manipulação: <code>SELECT</code> (recupera/busca informações), <code>INSERT</code> (adiciona registros novos), <code>UPDATE</code> (edita registros salvos) e <code>DELETE</code> (remove linhas específicas baseando-se em critérios).</p>",
+                pergunta: "Qual a importância crucial da cláusula WHERE nos comandos UPDATE e DELETE?",
+                resposta: "A cláusula WHERE restringe a alteração ou exclusão apenas às linhas que obedecem àquela condição específica. Sem o WHERE, o comando UPDATE ou DELETE afetará TODAS as linhas da tabela simultaneamente."
+            }
+        };
+
+        function alternarTema() {
+            const hash = window.location.hash.substring(1) || "conceitos-sgbd";
+            const dadosTema = conteudosBD[hash];
+
+            if (dadosTema) {
+                document.getElementById("bloco-texto-tema").innerHTML = `<h2>${dadosTema.titulo}</h2>${dadosTema.texto}`;
+                document.getElementById("pergunta-txt").innerText = dadosTema.pergunta;
+                document.getElementById("resposta-txt").innerText = dadosTema.resposta;
+                document.getElementById("resposta-txt").style.display = "none";
+                document.getElementById("btn-revelar-resposta").style.display = "inline-block";
+
+                document.querySelectorAll(".aba-tema").forEach(aba => {
+                    aba.classList.toggle("ativa", aba.getAttribute("href") === `#${hash}`);
+                });
+
+                carregarAnotacaoServidor(hash);
+            }
+        }
+
+        document.getElementById("btn-revelar-resposta").addEventListener("click", () => {
+            document.getElementById("resposta-txt").style.display = "block";
+            document.getElementById("btn-revelar-resposta").style.display = "none";
+        });
+
+        document.getElementById("btn-salvar-anotacao").addEventListener("click", async () => {
+            const hashAtual = window.location.hash.substring(1) || "conceitos-sgbd";
+            const textoAnotacao = document.getElementById("txt-anotacao").value;
+            const statusTxt = document.getElementById("msg-status-salvamento");
+
+            statusTxt.innerText = "Salvando...";
+
+            try {
+                const response = await fetch('/api/anotacoes', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        disciplina: "banco-de-dados",
+                        tema: hashAtual,
+                        conteudo: textoAnotacao
+                    }),
+                    credentials: 'include'
+                });
+
+                if (response.ok) {
+                    statusTxt.innerText = "✅ Salvo no servidor!";
+                    statusTxt.style.color = "var(--accent)";
+                } else {
+                    statusTxt.innerText = "❌ Erro ao salvar.";
+                }
+            } catch (err) {
+                statusTxt.innerText = "❌ Falha na conexão.";
+            }
+        });
+
+        async function carregarAnotacaoServidor(temaId) {
+            try {
+                const response = await fetch(`/api/anotacoes?disciplina=banco-de-dados&tema=${temaId}`, {
+                    credentials: 'include'
+                });
+                if (response.ok) {
+                    const dados = await response.json();
+                    document.getElementById("txt-anotacao").value = dados.conteudo || "";
+                }
+            } catch (err) {
+                console.log("Erro ao recuperar anotações do servidor.");
+            }
+        }
+
+        window.addEventListener("hashchange", alternarTema);
+        window.addEventListener("DOMContentLoaded", alternarTema);
+    </script>
+</body>
+</html>

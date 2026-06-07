@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Intranet — Notícias</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 24px; }
+
+    header {
+      background: white; padding: 16px 24px; border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 18px; color: #333; margin: 0; }
+    .nav a { text-decoration: none; color: #4f46e5; font-size: 14px; margin-left: 16px; }
+    button.sair {
+      background: none; border: 1px solid #ddd; padding: 6px 14px;
+      border-radius: 8px; cursor: pointer; font-size: 13px; color: #666;
+    }
+
+    /* FORMULÁRIO */
+    .formulario {
+      background: white; border-radius: 12px; padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-bottom: 24px;
+    }
+    .formulario h2 { font-size: 16px; color: #333; margin: 0 0 16px; }
+
+    input, textarea {
+      width: 100%; box-sizing: border-box;
+      border: 1px solid #ddd; border-radius: 8px;
+      padding: 10px; font-size: 14px; font-family: sans-serif;
+      margin-bottom: 12px; color: #333;
+    }
+    textarea { min-height: 80px; resize: vertical; }
+
+    .linha { display: flex; gap: 12px; }
+    .linha input { flex: 1; }
+
+    button.publicar {
+      background: #4f46e5; color: white; border: none;
+      padding: 10px 24px; border-radius: 8px;
+      cursor: pointer; font-size: 14px;
+    }
+    button.publicar:hover { background: #4338ca; }
+
+    /* LISTA */
+    .lista { display: flex; flex-direction: column; gap: 12px; }
+
+    .noticia {
+      background: white; border-radius: 12px; padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .noticia-info h3 { font-size: 15px; color: #333; margin: 0 0 6px; }
+    .noticia-info p { font-size: 13px; color: #888; margin: 0; }
+
+    .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 8px; }
+    .tag {
+      font-size: 11px; background: #eef2ff; color: #4f46e5;
+      padding: 2px 10px; border-radius: 20px;
+    }
+
+    button.excluir {
+      background: none; border: 1px solid #fca5a5; color: #ef4444;
+      padding: 6px 12px; border-radius: 8px;
+      cursor: pointer; font-size: 12px; white-space: nowrap;
+    }
+    button.excluir:hover { background: #fef2f2; }
+
+    .vazio { color: #999; font-size: 14px; text-align: center; padding: 32px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏫 Intranet</h1>
+  <nav class="nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/noticias">Notícias</a>
+    <a href="/documentacao">📄 Documentação</a>
+  </nav>
+  <button class="sair" onclick="sair()">Sair</button>
+</header>
+
+<!-- FORMULÁRIO -->
+<div class="formulario">
+  <h2>📝 Nova notícia</h2>
+
+  <input type="text" id="titulo" placeholder="Título da notícia">
+  <textarea id="conteudo" placeholder="Conteúdo da notícia"></textarea>
+
+  <div class="linha">
+    <input type="text" id="tags" placeholder="Tags (ex: Gestão, TI, RH)">
+    <input type="text" id="unidades" placeholder="Unidades (ex: Sede Curitiba)">
+  </div>
+
+  <button class="publicar" onclick="publicar()">Publicar notícia</button>
+</div>
+
+<!-- LISTA DE NOTÍCIAS -->
+<div class="lista" id="lista">
+  <p class="vazio">Carregando...</p>
+</div>
+
+<script>
+  async function carregar() {
+    const resp = await fetch('/api/noticias', { credentials: 'include' });
+    if (resp.status === 401) { window.location.href = '/'; return; }
+
+    const noticias = await resp.json();
+    const lista = document.getElementById('lista');
+
+    if (noticias.length === 0) {
+      lista.innerHTML = '<p class="vazio">Nenhuma notícia cadastrada ainda.</p>';
+      return;
+    }
+
+    lista.innerHTML = noticias.map(n => `
+      <div class="noticia" id="noticia-${n.id}">
+        <div class="noticia-info">
+          <h3>${n.titulo}</h3>
+          <p>${n.conteudo || ''}</p>
+          <div class="tags">
+            ${(n.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}
+          </div>
+        </div>
+        <button class="excluir" onclick="excluir(${n.id})">🗑 Excluir</button>
+      </div>
+    `).join('');
+  }
+
+  async function publicar() {
+    const titulo = document.getElementById('titulo').value.trim();
+    const conteudo = document.getElementById('conteudo').value.trim();
+    const tags = document.getElementById('tags').value.split(',').map(t => t.trim()).filter(Boolean);
+    const unidades = document.getElementById('unidades').value.split(',').map(u => u.trim()).filter(Boolean);
+
+    if (!titulo) { alert('O título é obrigatório!'); return; }
+
+    const resp = await fetch('/api/noticias', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ titulo, conteudo, tags, unidades_alvo: unidades }),
+      credentials: 'include'
+    });
+
+    if (resp.ok) {
+      document.getElementById('titulo').value = '';
+      document.getElementById('conteudo').value = '';
+      document.getElementById('tags').value = '';
+      document.getElementById('unidades').value = '';
+      carregar();
+    }
+  }
+
+  async function excluir(id) {
+    if (!confirm('Tem certeza que quer excluir esta notícia?')) return;
+
+    const resp = await fetch(`/api/noticias/${id}`, {
+      method: 'DELETE',
+      credentials: 'include'
+    });
+
+    if (resp.ok) {
+      document.getElementById(`noticia-${id}`).remove();
+    }
+  }
+
+  async function sair() {
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+    window.location.href = '/';
+  }
+
+  carregar();
+</script>
+</body>
+</html>

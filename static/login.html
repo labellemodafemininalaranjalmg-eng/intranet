@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Intranet — Login</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: #f0f2f5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .caixa {
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+      width: 320px;
+    }
+
+    h1 {
+      font-size: 22px;
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #4f46e5;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #4338ca;
+    }
+
+    .erro {
+      color: red;
+      font-size: 13px;
+      margin-top: 12px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="caixa">
+    <h1>🏫 Intranet</h1>
+
+    <input type="email" id="email" placeholder="Seu email">
+    <input type="password" id="senha" placeholder="Sua senha">
+
+    <button onclick="fazerLogin()">Entrar</button>
+
+    <p class="erro" id="erro">Email ou senha incorretos.</p>
+  </div>
+
+  <script>
+    async function fazerLogin() {
+      const email = document.getElementById('email').value;
+      const senha = document.getElementById('senha').value;
+
+      const resposta = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, senha }),
+        credentials: 'include'
+      });
+
+      if (resposta.ok) {
+        // Login ok — vai para o dashboard
+        window.location.href = '/dashboard';
+      } else {
+        // Mostra mensagem de erro
+        document.getElementById('erro').style.display = 'block';
+      }
+    }
+  </script>
+
+</body>
+</html>

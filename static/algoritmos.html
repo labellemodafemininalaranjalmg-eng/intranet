@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Algoritmos — Intranet</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 24px; }
+
+    header {
+      background: white; padding: 16px 24px; border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 18px; color: #333; margin: 0; }
+    .nav a { text-decoration: none; color: #4f46e5; font-size: 14px; margin-left: 16px; }
+    button.sair {
+      background: none; border: 1px solid #ddd; padding: 6px 14px;
+      border-radius: 8px; cursor: pointer; font-size: 13px; color: #666;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #4f46e5, #7c3aed);
+      border-radius: 12px; padding: 32px 36px; margin-bottom: 28px;
+      color: white;
+    }
+    .hero h2 { font-size: 26px; margin: 0 0 8px; }
+    .hero p { font-size: 15px; opacity: 0.85; margin: 0; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      background: white; border-radius: 12px; padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .card h3 {
+      font-size: 16px; color: #333; margin: 0 0 4px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .card .subtitulo { font-size: 12px; color: #888; margin: 0 0 16px; }
+
+    .topico { margin-bottom: 20px; }
+    .topico h4 { font-size: 14px; color: #4f46e5; margin: 0 0 6px; }
+    .topico p { font-size: 13px; color: #555; line-height: 1.7; margin: 0; }
+
+    .codigo {
+      background: #1e1e2e; border-radius: 8px;
+      padding: 14px 16px; margin: 10px 0;
+      font-family: monospace; font-size: 12.5px;
+      color: #cdd6f4; line-height: 1.7;
+      overflow-x: auto;
+    }
+    .kw { color: #89b4fa; }
+    .fn { color: #a6e3a1; }
+    .str { color: #a6e3a1; }
+    .cmt { color: #585b70; }
+    .num { color: #fab387; }
+
+    .refs { list-style: none; padding: 0; margin: 0; }
+    .refs li { margin-bottom: 8px; }
+    .refs a {
+      color: #4f46e5; text-decoration: none; font-size: 13px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .refs a:hover { text-decoration: underline; }
+
+    .voltar {
+      display: inline-block; margin-bottom: 20px;
+      color: #4f46e5; text-decoration: none; font-size: 14px;
+    }
+    .voltar:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏫 Intranet</h1>
+  <nav class="nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/noticias">Notícias</a>
+    <a href="/documentacao">📄 Documentação</a>
+  </nav>
+  <button class="sair" onclick="sair()">Sair</button>
+</header>
+
+<a class="voltar" href="/disciplinas">← Voltar para Disciplinas</a>
+
+<div class="hero">
+  <h2>🧮 Algoritmos</h2>
+  <p>Lógica de programação e estruturas fundamentais para resolução de problemas computacionais.</p>
+</div>
+
+<div class="grid">
+
+  <!-- VARIÁVEIS -->
+  <div class="card">
+    <h3>📦 Variáveis e Tipos de Dados</h3>
+    <p class="subtitulo">Como o Python armazena informações</p>
+
+    <div class="topico">
+      <h4>O que é uma variável?</h4>
+      <p>Uma variável é um espaço nomeado na memória do computador que armazena um valor. Em Python, não é necessário declarar o tipo — ele é inferido automaticamente.</p>
+    </div>
+
+    <div class="topico">
+      <h4>Tipos principais</h4>
+      <p><strong>int</strong> — números inteiros (ex: 10, -3)<br>
+         <strong>float</strong> — números decimais (ex: 3.14)<br>
+         <strong>str</strong> — texto (ex: "Olá")<br>
+         <strong>bool</strong> — verdadeiro ou falso (True / False)</p>
+    </div>
+
+    <div class="codigo">
+<span class="cmt"># Exemplos de variáveis</span>
+nome = <span class="str">"Patrícia"</span>
+idade = <span class="num">20</span>
+altura = <span class="num">1.68</span>
+ativo = <span class="kw">True</span>
+
+<span class="fn">print</span>(<span class="str">f"Olá, {nome}! Idade: {idade}"</span>)
+    </div>
+  </div>
+
+  <!-- CONDICIONAIS -->
+  <div class="card">
+    <h3>🔀 Estruturas Condicionais</h3>
+    <p class="subtitulo">Tomada de decisão no código</p>
+
+    <div class="topico">
+      <h4>if / elif / else</h4>
+      <p>Permitem que o programa execute blocos de código diferentes dependendo de uma condição. A indentação (recuo) define quais linhas pertencem a cada bloco.</p>
+    </div>
+
+    <div class="topico">
+      <h4>Operadores de comparação</h4>
+      <p><strong>==</strong> igual a &nbsp;|&nbsp; <strong>!=</strong> diferente &nbsp;|&nbsp; <strong>&gt;</strong> maior &nbsp;|&nbsp; <strong>&lt;</strong> menor &nbsp;|&nbsp; <strong>and</strong> e &nbsp;|&nbsp; <strong>or</strong> ou</p>
+    </div>
+
+    <div class="codigo">
+nota = <span class="num">7.5</span>
+
+<span class="kw">if</span> nota >= <span class="num">7</span>:
+    <span class="fn">print</span>(<span class="str">"Aprovado"</span>)
+<span class="kw">elif</span> nota >= <span class="num">5</span>:
+    <span class="fn">print</span>(<span class="str">"Recuperação"</span>)
+<span class="kw">else</span>:
+    <span class="fn">print</span>(<span class="str">"Reprovado"</span>)
+    </div>
+  </div>
+
+  <!-- LAÇOS -->
+  <div class="card">
+    <h3>🔁 Laços de Repetição</h3>
+    <p class="subtitulo">Executar código múltiplas vezes</p>
+
+    <div class="topico">
+      <h4>for — quantidade definida</h4>
+      <p>Usado quando sabemos quantas vezes repetir, ou quando queremos percorrer uma lista ou sequência.</p>
+    </div>
+
+    <div class="topico">
+      <h4>while — condição</h4>
+      <p>Usado quando a repetição depende de uma condição que muda durante a execução.</p>
+    </div>
+
+    <div class="codigo">
+<span class="cmt"># for percorre uma lista</span>
+frutas = [<span class="str">"maçã"</span>, <span class="str">"uva"</span>, <span class="str">"pera"</span>]
+<span class="kw">for</span> fruta <span class="kw">in</span> frutas:
+    <span class="fn">print</span>(fruta)
+
+<span class="cmt"># while com condição</span>
+contador = <span class="num">0</span>
+<span class="kw">while</span> contador < <span class="num">3</span>:
+    <span class="fn">print</span>(contador)
+    contador += <span class="num">1</span>
+    </div>
+  </div>
+
+  <!-- FUNÇÕES -->
+  <div class="card">
+    <h3>⚙️ Funções</h3>
+    <p class="subtitulo">Reutilização e organização do código</p>
+
+    <div class="topico">
+      <h4>O que é uma função?</h4>
+      <p>Uma função é um bloco de código nomeado que executa uma tarefa específica. Pode receber dados (parâmetros) e devolver um resultado (return). Evita repetição de código.</p>
+    </div>
+
+    <div class="topico">
+      <h4>Parâmetros e retorno</h4>
+      <p>Parâmetros são as entradas da função. O <strong>return</strong> define o valor que a função devolve ao código que a chamou.</p>
+    </div>
+
+    <div class="codigo">
+<span class="kw">def</span> <span class="fn">calcular_media</span>(notas):
+    soma = <span class="fn">sum</span>(notas)
+    <span class="kw">return</span> soma / <span class="fn">len</span>(notas)
+
+minhas_notas = [<span class="num">8</span>, <span class="num">7</span>, <span class="num">9</span>, <span class="num">6</span>]
+media = calcular_media(minhas_notas)
+<span class="fn">print</span>(<span class="str">f"Média: {media}"</span>)
+    </div>
+  </div>
+
+  <!-- LISTAS -->
+  <div class="card">
+    <h3>📋 Listas e Conjuntos</h3>
+    <p class="subtitulo">Agrupamento de dados</p>
+
+    <div class="topico">
+      <h4>Listas (list)</h4>
+      <p>Coleção ordenada e mutável de elementos. Permite duplicatas. Acessada por índice (começa em 0).</p>
+    </div>
+
+    <div class="topico">
+      <h4>Conjuntos (set)</h4>
+      <p>Coleção não ordenada e sem duplicatas. Muito eficiente para operações como interseção (&) e união (|) — usadas no algoritmo de recomendação deste projeto!</p>
+    </div>
+
+    <div class="codigo">
+<span class="cmt"># Lista</span>
+nomes = [<span class="str">"Ana"</span>, <span class="str">"Bruno"</span>, <span class="str">"Ana"</span>]
+
+<span class="cmt"># Conjunto — remove duplicatas</span>
+interesses = {<span class="str">"Gestão"</span>, <span class="str">"TI"</span>}
+tags = {<span class="str">"TI"</span>, <span class="str">"Logística"</span>}
+
+<span class="cmt"># Interseção — usado no projeto!</span>
+comuns = interesses & tags
+<span class="fn">print</span>(comuns)  <span class="cmt"># {'TI'}</span>
+    </div>
+  </div>
+
+  <!-- REFERÊNCIAS -->
+  <div class="card">
+    <h3>🔗 Referências e Links</h3>
+    <p class="subtitulo">Material de apoio externo</p>
+
+    <div class="topico">
+      <h4>Documentação e tutoriais</h4>
+      <ul class="refs">
+        <li><a href="https://docs.python.org/pt-br/3/tutorial/" target="_blank">↗ Tutorial oficial Python (pt-BR)</a></li>
+        <li><a href="https://pythontutor.com" target="_blank">↗ Python Tutor — visualize o código rodando</a></li>
+        <li><a href="https://www.w3schools.com/python/" target="_blank">↗ W3Schools Python</a></li>
+        <li><a href="https://www.beecrowd.com.br" target="_blank">↗ Beecrowd — exercícios de programação</a></li>
+        <li><a href="https://pense.alura.com.br" target="_blank">↗ Pense em Python — livro gratuito (pt-BR)</a></li>
+      </ul>
+    </div>
+
+    <div class="topico">
+      <h4>Conexão com o projeto</h4>
+      <p>O algoritmo de recomendação da intranet usa variáveis, for, if e operações com conjuntos — exatamente os temas desta disciplina. Releia o arquivo <strong>recomendacoes.py</strong> após estudar cada tópico.</p>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  async function sair() {
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+    window.location.href = '/';
+  }
+
+  // Redireciona se não estiver logado
+  fetch('/api/me', { credentials: 'include' }).then(r => {
+    if (r.status === 401) window.location.href = '/';
+  });
+</script>
+
+</body>
+</html>

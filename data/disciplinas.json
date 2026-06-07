@@ -1,0 +1,158 @@
+[
+  {
+    "id": 1,
+    "slug": "algoritmos",
+    "nome": "Algoritmos",
+    "icone": "🧮",
+    "descricao": "Lógica de programação e estruturas fundamentais.",
+    "temas": [
+      "Variáveis e tipos de dados",
+      "Estruturas condicionais (if/else)",
+      "Laços de repetição (for/while)",
+      "Funções e modularização",
+      "Vetores e matrizes"
+    ],
+    "materiais": [
+      { "titulo": "Python para iniciantes", "url": "https://docs.python.org/pt-br/3/tutorial/" },
+      { "titulo": "Visualize seu código rodando", "url": "https://pythontutor.com" }
+    ],
+    "quizzes": [
+      { "pergunta": "O que é uma variável?", "resposta": "Um espaço na memória que armazena um valor que pode mudar durante a execução do programa." },
+      { "pergunta": "Qual a diferença entre for e while?", "resposta": "O for percorre uma sequência definida. O while repete enquanto uma condição for verdadeira." }
+    ]
+  },
+  {
+    "id": 2,
+    "slug": "programacao-estruturada",
+    "nome": "Programação Estruturada",
+    "icone": "💻",
+    "descricao": "Desenvolvimento de programas organizados e reutilizáveis.",
+    "temas": [
+      "Funções e parâmetros",
+      "Escopo de variáveis",
+      "Recursividade",
+      "Manipulação de arquivos",
+      "Módulos e bibliotecas"
+    ],
+    "materiais": [
+      { "titulo": "Documentação oficial do Python", "url": "https://docs.python.org/pt-br/3/" },
+      { "titulo": "Exercícios práticos", "url": "https://www.beecrowd.com.br" }
+    ],
+    "quizzes": [
+      { "pergunta": "O que é escopo de uma variável?", "resposta": "É a região do código onde a variável existe e pode ser acessada." },
+      { "pergunta": "O que é recursividade?", "resposta": "Quando uma função chama a si mesma para resolver um problema menor até chegar a um caso base." }
+    ]
+  },
+  {
+    "id": 3,
+    "slug": "aplicativos-computacionais",
+    "nome": "Aplicativos Computacionais",
+    "icone": "📊",
+    "descricao": "Uso de ferramentas digitais para produtividade e análise.",
+    "temas": [
+      "Editor de texto avançado",
+      "Planilhas e fórmulas",
+      "Apresentações profissionais",
+      "Ferramentas colaborativas",
+      "Segurança digital básica"
+    ],
+    "materiais": [
+      { "titulo": "Curso Google Workspace", "url": "https://workspace.google.com/intl/pt-BR/" },
+      { "titulo": "Atalhos do teclado", "url": "https://support.microsoft.com/pt-br/office" }
+    ],
+    "quizzes": [
+      { "pergunta": "O que é uma fórmula no Excel?", "resposta": "Uma expressão que começa com = e realiza cálculos usando valores, referências de células e funções." },
+      { "pergunta": "O que é computação em nuvem?", "resposta": "Armazenamento e processamento de dados em servidores remotos acessados pela internet." }
+    ]
+  },
+  {
+    "id": 4,
+    "slug": "comunicacao-organizacional",
+    "nome": "Comunicação Organizacional",
+    "icone": "🗣️",
+    "descricao": "Comunicação eficaz no ambiente profissional e corporativo.",
+    "temas": [
+      "Comunicação verbal e não verbal",
+      "Comunicação interna e externa",
+      "Redação profissional",
+      "Apresentações e oratória",
+      "Comunicação digital e redes"
+    ],
+    "materiais": [
+      { "titulo": "Manual de redação profissional", "url": "https://www.gov.br/servidor/pt-br/acesso-a-informacao/gestao-de-pessoas/manual-de-redacao" },
+      { "titulo": "TED Talks sobre comunicação", "url": "https://www.ted.com/topics/communication" }
+    ],
+    "quizzes": [
+      { "pergunta": "O que é comunicação não verbal?", "resposta": "Toda mensagem transmitida sem palavras: gestos, expressões faciais, postura, tom de voz e aparência." },
+      { "pergunta": "Qual a diferença entre comunicação formal e informal?", "resposta": "A formal segue normas e hierarquia organizacional. A informal é espontânea e ocorre fora dos canais oficiais." }
+    ]
+  },
+  {
+    "id": 5,
+    "slug": "etica-e-responsabilidade-social",
+    "nome": "Ética e Responsabilidade Social",
+    "icone": "⚖️",
+    "descricao": "Princípios éticos e responsabilidade no contexto profissional e social.",
+    "temas": [
+      "Conceitos de ética e moral",
+      "Ética profissional",
+      "Responsabilidade social empresarial",
+      "Sustentabilidade",
+      "Ética na tecnologia e internet"
+    ],
+    "materiais": [
+      { "titulo": "ODS — Objetivos de Desenvolvimento Sustentável", "url": "https://brasil.un.org/pt-br/sdgs" },
+      { "titulo": "Ética na IA — Anthropic", "url": "https://www.anthropic.com" }
+    ],
+    "quizzes": [
+      { "pergunta": "O que é ética profissional?", "resposta": "Conjunto de normas e valores que orientam a conduta do profissional no exercício de sua função." },
+      { "pergunta": "O que é responsabilidade social empresarial?", "resposta": "Compromisso da empresa com ações que beneficiem a sociedade, o meio ambiente e seus colaboradores, além do lucro." }
+    ]
+  },
+
+  {
+    "id": 6,
+    "nome": "Programação para Web I",
+    "descricao": "Desenvolvimento de aplicações web dinâmicas e integração frontend/backend.",
+    "icone": "🌐",
+    "url_pagina": "programacao-web-1.html",
+    "temas": [
+      "Protocolo HTTP e Ciclo de Requisição/Resposta",
+      "Fundamentos de rotas e métodos (GET/POST)",
+      "Motores de Templates e renderização dinâmica",
+      "Manipulação de formulários e envio de dados",
+      "Gerenciamento de sessões, cookies e autenticação"
+    ],
+    "materiais": [
+      {"titulo": "Documentação Oficial do Flask", "url": "https://flask.palletsprojects.com/"},
+      {"titulo": "Guia MDN - Entendendo a Web", "url": "#"}
+    ],
+    "quizzes": [
+      {"pergunta": "Qual a principal diferença entre os métodos GET e POST?", "resposta": "O método GET envia dados visíveis na URL para leitura, enquanto o POST envia dados estruturados no corpo da requisição para criação/alteração."},
+      {"pergunta": "O que é uma rota dinâmica na arquitetura web?", "resposta": "É uma rota que aceita parâmetros variáveis na URL, permitindo processar diferentes dados com uma única lógica."}
+    ]
+  },
+
+  {
+    "id": 7,
+    "nome": "Banco de Dados",
+    "descricao": "Projetos de bancos de dados relacionais, modelagem e linguagem SQL.",
+    "icone": "💾",
+    "url_pagina": "banco-de-dados.html",
+    "temas": [
+      "Conceitos de Bancos de Dados e SGBDs",
+      "Modelagem Entidade-Relacionamento (DER)",
+      "Normalização de dados (1FN, 2FN e 3FN)",
+      "Linguagem SQL: Comandos DDL (Create, Alter)",
+      "Linguagem SQL: Comandos DML (Select, Insert, Update)"
+    ],
+    "materiais": [
+      {"titulo": "Introdução ao SQLite em Python", "url": "#"},
+      {"titulo": "Simulador de Modelagem DER", "url": "#"}
+    ],
+    "quizzes": [
+      {"pergunta": "O que é uma Chave Primária (Primary Key)?", "resposta": "É um identificador exclusivo para cada registro em uma tabela, garantindo que não existam linhas duplicadas."},
+      {"pergunta": "Para que serve o comando SELECT com a cláusula WHERE?", "resposta": "Serve para filtrar e recuperar registros específicos de uma tabela que atendam a uma condição determinada."}
+    ]
+  }
+]

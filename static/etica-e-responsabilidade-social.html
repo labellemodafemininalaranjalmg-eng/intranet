@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Ética e Responsabilidade Social — Intranet</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 24px; }
+    header {
+      background: white; padding: 16px 24px; border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 18px; color: #333; margin: 0; }
+    .nav a { text-decoration: none; color: #4f46e5; font-size: 14px; margin-left: 16px; }
+    button.sair {
+      background: none; border: 1px solid #ddd; padding: 6px 14px;
+      border-radius: 8px; cursor: pointer; font-size: 13px; color: #666;
+    }
+    .hero {
+      background: linear-gradient(135deg, #7c3aed, #5b21b6);
+      border-radius: 12px; padding: 32px 36px; margin-bottom: 28px; color: white;
+    }
+    .hero h2 { font-size: 26px; margin: 0 0 8px; }
+    .hero p { font-size: 15px; opacity: 0.85; margin: 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white; border-radius: 12px; padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .card h3 { font-size: 16px; color: #333; margin: 0 0 4px; }
+    .card .subtitulo { font-size: 12px; color: #888; margin: 0 0 16px; }
+    .topico { margin-bottom: 20px; }
+    .topico h4 { font-size: 14px; color: #7c3aed; margin: 0 0 6px; }
+    .topico p { font-size: 13px; color: #555; line-height: 1.7; margin: 0; }
+    .topico ul { font-size: 13px; color: #555; line-height: 1.9; margin: 6px 0 0 16px; padding: 0; }
+    .refs { list-style: none; padding: 0; margin: 0; }
+    .refs li { margin-bottom: 8px; }
+    .refs a { color: #7c3aed; text-decoration: none; font-size: 13px; }
+    .refs a:hover { text-decoration: underline; }
+    .voltar {
+      display: inline-block; margin-bottom: 20px;
+      color: #4f46e5; text-decoration: none; font-size: 14px;
+    }
+    .voltar:hover { text-decoration: underline; }
+    .destaque {
+      background: #f5f3ff; border-left: 3px solid #7c3aed;
+      border-radius: 6px; padding: 12px 16px; margin-top: 10px;
+      font-size: 13px; color: #555; line-height: 1.7;
+    }
+    .ods-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6px; margin-top: 10px;
+    }
+    .ods-item {
+      background: #f5f3ff; border-radius: 6px; padding: 8px 10px;
+      font-size: 12px; color: #5b21b6; font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏫 Intranet</h1>
+  <nav class="nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/noticias">Notícias</a>
+    <a href="/documentacao">Documentação</a>
+  </nav>
+  <button class="sair" onclick="sair()">Sair</button>
+</header>
+
+<a class="voltar" href="/disciplinas">← Voltar para Disciplinas</a>
+
+<div class="hero">
+  <h2>⚖️ Ética e Responsabilidade Social</h2>
+  <p>Princípios éticos e responsabilidade no contexto profissional, tecnológico e social.</p>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <h3>🧭 Conceitos de Ética e Moral</h3>
+    <p class="subtitulo">Fundamentos do agir correto</p>
+    <div class="topico">
+      <h4>Ética vs. Moral</h4>
+      <p><strong>Moral</strong> são os valores e costumes de um grupo social — o que é considerado certo ou errado em determinada cultura. <strong>Ética</strong> é a reflexão filosófica sobre esses valores — o questionamento racional do que é justo e correto.</p>
+    </div>
+    <div class="topico">
+      <h4>Principais correntes éticas</h4>
+      <ul>
+        <li><strong>Ética deontológica</strong> — age conforme regras e deveres (Kant)</li>
+        <li><strong>Ética consequencialista</strong> — o resultado justifica a ação (Bentham)</li>
+        <li><strong>Ética das virtudes</strong> — foco no caráter do agente (Aristóteles)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>💼 Ética Profissional</h3>
+    <p class="subtitulo">Conduta no exercício da profissão</p>
+    <div class="topico">
+      <h4>O que é ética profissional?</h4>
+      <p>Conjunto de normas e valores que orientam a conduta do profissional no exercício de sua função. Vai além do que a lei exige — envolve integridade, responsabilidade e respeito.</p>
+    </div>
+    <div class="topico">
+      <h4>Princípios fundamentais</h4>
+      <ul>
+        <li><strong>Honestidade</strong> — transparência nas ações e informações</li>
+        <li><strong>Sigilo</strong> — proteção de informações confidenciais</li>
+        <li><strong>Competência</strong> — atuar dentro dos próprios limites</li>
+        <li><strong>Respeito</strong> — tratar clientes e colegas com dignidade</li>
+        <li><strong>Responsabilidade</strong> — assumir as consequências das ações</li>
+      </ul>
+    </div>
+    <div class="destaque">
+      💡 No desenvolvimento de software, ética profissional inclui proteger os dados dos usuários, documentar o código corretamente e ser honesto sobre as capacidades do sistema.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🏭 Responsabilidade Social Empresarial</h3>
+    <p class="subtitulo">O papel da empresa na sociedade</p>
+    <div class="topico">
+      <h4>O que é RSE?</h4>
+      <p>Compromisso voluntário da empresa com ações que beneficiem a sociedade, o meio ambiente e seus colaboradores, além da busca pelo lucro. A empresa é vista como agente transformador da realidade social.</p>
+    </div>
+    <div class="topico">
+      <h4>Dimensões da RSE</h4>
+      <ul>
+        <li><strong>Social</strong> — bem-estar dos colaboradores e comunidade</li>
+        <li><strong>Ambiental</strong> — redução do impacto ecológico</li>
+        <li><strong>Econômica</strong> — geração de valor de forma sustentável</li>
+        <li><strong>Cultural</strong> — preservação e promoção da cultura local</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🌱 Sustentabilidade e ODS</h3>
+    <p class="subtitulo">Desenvolvimento que respeita o futuro</p>
+    <div class="topico">
+      <h4>Objetivos de Desenvolvimento Sustentável</h4>
+      <p>Os 17 ODS da ONU (Agenda 2030) são metas globais para erradicar a pobreza, proteger o planeta e garantir prosperidade para todos. Empresas e indivíduos podem contribuir ativamente.</p>
+    </div>
+    <div class="ods-grid">
+      <div class="ods-item">🎓 ODS 4 — Educação de qualidade</div>
+      <div class="ods-item">⚧ ODS 5 — Igualdade de gênero</div>
+      <div class="ods-item">💼 ODS 8 — Trabalho digno</div>
+      <div class="ods-item">🏙️ ODS 11 — Cidades sustentáveis</div>
+      <div class="ods-item">🌡️ ODS 13 — Ação climática</div>
+      <div class="ods-item">🤝 ODS 17 — Parcerias</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🤖 Ética na Tecnologia</h3>
+    <p class="subtitulo">Responsabilidade no desenvolvimento digital</p>
+    <div class="topico">
+      <h4>LGPD — Lei Geral de Proteção de Dados</h4>
+      <p>Lei nº 13.709/2018 que regula o tratamento de dados pessoais no Brasil. Todo sistema que coleta dados de usuários deve seguir seus princípios: finalidade, necessidade, transparência e segurança.</p>
+    </div>
+    <div class="topico">
+      <h4>Questões éticas em TI</h4>
+      <ul>
+        <li><strong>Privacidade</strong> — coleta mínima e uso adequado de dados</li>
+        <li><strong>Viés algorítmico</strong> — algoritmos podem perpetuar discriminação</li>
+        <li><strong>Acessibilidade</strong> — tecnologia deve ser inclusiva</li>
+        <li><strong>Desinformação</strong> — responsabilidade sobre o conteúdo publicado</li>
+      </ul>
+    </div>
+    <div class="destaque">
+      💡 Esta intranet coleta dados pessoais (e-mail, unidade, interesses). Pela LGPD, os usuários devem ser informados sobre quais dados são coletados e para qual finalidade.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔗 Referências e Links</h3>
+    <p class="subtitulo">Material de apoio externo</p>
+    <div class="topico">
+      <h4>Leituras e recursos</h4>
+      <ul class="refs">
+        <li><a href="https://brasil.un.org/pt-br/sdgs" target="_blank">↗ ODS — Objetivos de Desenvolvimento Sustentável (ONU)</a></li>
+        <li><a href="https://www.gov.br/anpd/pt-br" target="_blank">↗ ANPD — Autoridade Nacional de Proteção de Dados</a></li>
+        <li><a href="https://www.planalto.gov.br/ccivil_03/_ato2015-2018/2018/lei/l13709.htm" target="_blank">↗ Lei nº 13.709/2018 — LGPD (texto completo)</a></li>
+        <li><a href="https://www.anthropic.com" target="_blank">↗ Anthropic — ética no desenvolvimento de IA</a></li>
+        <li><a href="https://www.coursera.org/learn/data-ethics" target="_blank">↗ Ética em Dados (Coursera)</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  async function sair() {
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+    window.location.href = '/';
+  }
+  fetch('/api/me', { credentials: 'include' }).then(r => {
+    if (r.status === 401) window.location.href = '/';
+  });
+</script>
+
+</body>
+</html>

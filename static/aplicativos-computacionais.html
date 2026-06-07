@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Aplicativos Computacionais — Intranet</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 24px; }
+    header {
+      background: white; padding: 16px 24px; border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 18px; color: #333; margin: 0; }
+    .nav a { text-decoration: none; color: #4f46e5; font-size: 14px; margin-left: 16px; }
+    button.sair {
+      background: none; border: 1px solid #ddd; padding: 6px 14px;
+      border-radius: 8px; cursor: pointer; font-size: 13px; color: #666;
+    }
+    .hero {
+      background: linear-gradient(135deg, #059669, #047857);
+      border-radius: 12px; padding: 32px 36px; margin-bottom: 28px; color: white;
+    }
+    .hero h2 { font-size: 26px; margin: 0 0 8px; }
+    .hero p { font-size: 15px; opacity: 0.85; margin: 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white; border-radius: 12px; padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .card h3 { font-size: 16px; color: #333; margin: 0 0 4px; }
+    .card .subtitulo { font-size: 12px; color: #888; margin: 0 0 16px; }
+    .topico { margin-bottom: 20px; }
+    .topico h4 { font-size: 14px; color: #059669; margin: 0 0 6px; }
+    .topico p { font-size: 13px; color: #555; line-height: 1.7; margin: 0; }
+    .topico ul { font-size: 13px; color: #555; line-height: 1.9; margin: 6px 0 0 16px; padding: 0; }
+    .refs { list-style: none; padding: 0; margin: 0; }
+    .refs li { margin-bottom: 8px; }
+    .refs a { color: #059669; text-decoration: none; font-size: 13px; }
+    .refs a:hover { text-decoration: underline; }
+    .voltar {
+      display: inline-block; margin-bottom: 20px;
+      color: #4f46e5; text-decoration: none; font-size: 14px;
+    }
+    .voltar:hover { text-decoration: underline; }
+    .destaque {
+      background: #f0fdf4; border-left: 3px solid #059669;
+      border-radius: 6px; padding: 12px 16px; margin-top: 10px;
+      font-size: 13px; color: #555; line-height: 1.7;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏫 Intranet</h1>
+  <nav class="nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/noticias">Notícias</a>
+    <a href="/documentacao">Documentação</a>
+  </nav>
+  <button class="sair" onclick="sair()">Sair</button>
+</header>
+
+<a class="voltar" href="/disciplinas">← Voltar para Disciplinas</a>
+
+<div class="hero">
+  <h2>📊 Aplicativos Computacionais</h2>
+  <p>Uso de ferramentas digitais para produtividade, análise e colaboração no ambiente profissional.</p>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <h3>📝 Editor de Texto Avançado</h3>
+    <p class="subtitulo">Além do básico — formatação profissional</p>
+    <div class="topico">
+      <h4>Recursos essenciais</h4>
+      <p>Um editor de texto profissional vai muito além de digitar. Dominar estilos, sumário automático, cabeçalhos e rodapés garante documentos padronizados e de aparência profissional.</p>
+    </div>
+    <div class="topico">
+      <h4>Principais atalhos</h4>
+      <ul>
+        <li><strong>Ctrl + B</strong> — negrito</li>
+        <li><strong>Ctrl + K</strong> — inserir link</li>
+        <li><strong>Ctrl + Shift + P</strong> — aplicar estilo</li>
+        <li><strong>F12</strong> — Salvar como</li>
+        <li><strong>Ctrl + Z</strong> — desfazer</li>
+      </ul>
+    </div>
+    <div class="destaque">
+      💡 Este projeto gerou sua documentação técnica em formato .docx usando a biblioteca <strong>docx</strong> do Node.js — um editor de texto programático!
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📊 Planilhas e Fórmulas</h3>
+    <p class="subtitulo">Cálculos, dados e visualizações</p>
+    <div class="topico">
+      <h4>O que é uma fórmula?</h4>
+      <p>Uma expressão que começa com <strong>=</strong> e realiza cálculos usando valores, referências de células e funções. As planilhas são ferramentas poderosas para análise de dados.</p>
+    </div>
+    <div class="topico">
+      <h4>Fórmulas mais usadas</h4>
+      <ul>
+        <li><strong>=SOMA(A1:A10)</strong> — soma um intervalo</li>
+        <li><strong>=MÉDIA(A1:A10)</strong> — calcula a média</li>
+        <li><strong>=SE(A1>7;"Aprovado";"Reprovado")</strong> — condicional</li>
+        <li><strong>=PROCV()</strong> — busca vertical</li>
+        <li><strong>=CONT.SE()</strong> — conta com condição</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🖥️ Apresentações Profissionais</h3>
+    <p class="subtitulo">Comunicar com clareza e impacto</p>
+    <div class="topico">
+      <h4>Princípios de um bom slide</h4>
+      <p>Uma apresentação eficaz segue a regra <strong>10/20/30</strong>: no máximo 10 slides, 20 minutos de duração e fonte mínima de 30 pontos. Menos texto, mais imagens e dados visuais.</p>
+    </div>
+    <div class="topico">
+      <h4>Hierarquia visual</h4>
+      <p>Use tamanhos de fonte, cores e espaçamento para guiar o olhar do espectador. O título deve ser o elemento mais destacado, seguido pelo ponto principal e depois pelos detalhes.</p>
+    </div>
+    <div class="destaque">
+      💡 Conexão com o projeto: a documentação desta intranet pode ser apresentada em slides usando os mesmos princípios aprendidos aqui.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>☁️ Ferramentas Colaborativas</h3>
+    <p class="subtitulo">Trabalho em equipe no ambiente digital</p>
+    <div class="topico">
+      <h4>Computação em nuvem</h4>
+      <p>Armazenamento e processamento de dados em servidores remotos acessados pela internet. Permite acesso de qualquer lugar e colaboração em tempo real entre equipes.</p>
+    </div>
+    <div class="topico">
+      <h4>Principais plataformas</h4>
+      <ul>
+        <li><strong>Google Workspace</strong> — Docs, Sheets, Drive, Meet</li>
+        <li><strong>Microsoft 365</strong> — Word, Excel, Teams, OneDrive</li>
+        <li><strong>Notion</strong> — documentação e gestão de projetos</li>
+        <li><strong>GitHub</strong> — controle de versão de código</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔒 Segurança Digital Básica</h3>
+    <p class="subtitulo">Protegendo dados e identidade online</p>
+    <div class="topico">
+      <h4>Boas práticas essenciais</h4>
+      <ul>
+        <li>Use senhas longas e únicas para cada serviço</li>
+        <li>Ative a autenticação em dois fatores (2FA)</li>
+        <li>Não clique em links suspeitos (phishing)</li>
+        <li>Mantenha softwares sempre atualizados</li>
+        <li>Faça backups regulares dos seus dados</li>
+      </ul>
+    </div>
+    <div class="topico">
+      <h4>Conexão com o projeto</h4>
+      <p>Esta intranet usa <strong>sessões criptografadas</strong> para autenticação e protege todas as rotas exigindo login — aplicando na prática os princípios de segurança digital.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔗 Referências e Links</h3>
+    <p class="subtitulo">Material de apoio externo</p>
+    <div class="topico">
+      <h4>Tutoriais e documentação</h4>
+      <ul class="refs">
+        <li><a href="https://workspace.google.com/intl/pt-BR/" target="_blank">↗ Google Workspace</a></li>
+        <li><a href="https://support.microsoft.com/pt-br/office" target="_blank">↗ Suporte Microsoft Office</a></li>
+        <li><a href="https://www.notion.so" target="_blank">↗ Notion — ferramenta de produtividade</a></li>
+        <li><a href="https://www.canva.com" target="_blank">↗ Canva — apresentações e design</a></li>
+        <li><a href="https://www.coursera.org/learn/google-it-support" target="_blank">↗ Google IT Support (Coursera)</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  async function sair() {
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+    window.location.href = '/';
+  }
+  fetch('/api/me', { credentials: 'include' }).then(r => {
+    if (r.status === 401) window.location.href = '/';
+  });
+</script>
+
+</body>
+</html>

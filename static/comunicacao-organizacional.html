@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Comunicação Organizacional — Intranet</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 24px; }
+    header {
+      background: white; padding: 16px 24px; border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 18px; color: #333; margin: 0; }
+    .nav a { text-decoration: none; color: #4f46e5; font-size: 14px; margin-left: 16px; }
+    button.sair {
+      background: none; border: 1px solid #ddd; padding: 6px 14px;
+      border-radius: 8px; cursor: pointer; font-size: 13px; color: #666;
+    }
+    .hero {
+      background: linear-gradient(135deg, #d97706, #b45309);
+      border-radius: 12px; padding: 32px 36px; margin-bottom: 28px; color: white;
+    }
+    .hero h2 { font-size: 26px; margin: 0 0 8px; }
+    .hero p { font-size: 15px; opacity: 0.85; margin: 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white; border-radius: 12px; padding: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .card h3 { font-size: 16px; color: #333; margin: 0 0 4px; }
+    .card .subtitulo { font-size: 12px; color: #888; margin: 0 0 16px; }
+    .topico { margin-bottom: 20px; }
+    .topico h4 { font-size: 14px; color: #d97706; margin: 0 0 6px; }
+    .topico p { font-size: 13px; color: #555; line-height: 1.7; margin: 0; }
+    .topico ul { font-size: 13px; color: #555; line-height: 1.9; margin: 6px 0 0 16px; padding: 0; }
+    .refs { list-style: none; padding: 0; margin: 0; }
+    .refs li { margin-bottom: 8px; }
+    .refs a { color: #d97706; text-decoration: none; font-size: 13px; }
+    .refs a:hover { text-decoration: underline; }
+    .voltar {
+      display: inline-block; margin-bottom: 20px;
+      color: #4f46e5; text-decoration: none; font-size: 14px;
+    }
+    .voltar:hover { text-decoration: underline; }
+    .destaque {
+      background: #fffbeb; border-left: 3px solid #d97706;
+      border-radius: 6px; padding: 12px 16px; margin-top: 10px;
+      font-size: 13px; color: #555; line-height: 1.7;
+    }
+    .tabela {
+      width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px;
+    }
+    .tabela th {
+      background: #fffbeb; color: #92400e; padding: 8px;
+      text-align: left; border-bottom: 2px solid #fde68a;
+    }
+    .tabela td { padding: 8px; border-bottom: 1px solid #fef3c7; color: #555; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏫 Intranet</h1>
+  <nav class="nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/noticias">Notícias</a>
+    <a href="/documentacao">Documentação</a>
+  </nav>
+  <button class="sair" onclick="sair()">Sair</button>
+</header>
+
+<a class="voltar" href="/disciplinas">← Voltar para Disciplinas</a>
+
+<div class="hero">
+  <h2>🗣️ Comunicação Organizacional</h2>
+  <p>Comunicação eficaz no ambiente profissional e corporativo — da redação à oratória.</p>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <h3>💬 Comunicação Verbal e Não Verbal</h3>
+    <p class="subtitulo">As duas dimensões da mensagem</p>
+    <div class="topico">
+      <h4>O que é comunicação não verbal?</h4>
+      <p>Toda mensagem transmitida sem palavras: gestos, expressões faciais, postura corporal, tom de voz, contato visual e aparência. Estudos indicam que mais de 60% da comunicação humana é não verbal.</p>
+    </div>
+    <div class="topico">
+      <h4>Elementos da comunicação verbal</h4>
+      <ul>
+        <li><strong>Clareza</strong> — mensagem compreensível ao receptor</li>
+        <li><strong>Objetividade</strong> — sem informações desnecessárias</li>
+        <li><strong>Coerência</strong> — ideias organizadas e conectadas</li>
+        <li><strong>Adequação</strong> — linguagem apropriada ao contexto</li>
+      </ul>
+    </div>
+    <div class="destaque">
+      💡 Conexão com o projeto: as notícias publicadas nesta intranet aplicam os princípios de comunicação verbal — clareza, objetividade e adequação ao público-alvo.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🏢 Comunicação Interna e Externa</h3>
+    <p class="subtitulo">Fluxos de informação na organização</p>
+    <div class="topico">
+      <h4>Comunicação interna</h4>
+      <p>Ocorre entre os membros da própria organização. Pode ser <strong>descendente</strong> (da liderança para a equipe), <strong>ascendente</strong> (da equipe para a liderança) ou <strong>horizontal</strong> (entre pares).</p>
+    </div>
+    <div class="topico">
+      <h4>Comunicação externa</h4>
+      <p>Dirigida ao público fora da organização: clientes, fornecedores, imprensa e sociedade. Inclui marketing, relações públicas e atendimento ao cliente.</p>
+    </div>
+    <table class="tabela">
+      <tr><th>Tipo</th><th>Exemplos</th></tr>
+      <tr><td>Interna descendente</td><td>Comunicados, manuais, reuniões</td></tr>
+      <tr><td>Interna ascendente</td><td>Relatórios, sugestões, feedbacks</td></tr>
+      <tr><td>Interna horizontal</td><td>E-mails entre colegas, reuniões de equipe</td></tr>
+      <tr><td>Externa</td><td>Publicidade, press releases, SAC</td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>✍️ Redação Profissional</h3>
+    <p class="subtitulo">Escrever com clareza e impacto</p>
+    <div class="topico">
+      <h4>Princípios da boa redação</h4>
+      <ul>
+        <li><strong>Concisão</strong> — dizer o máximo com o mínimo de palavras</li>
+        <li><strong>Precisão</strong> — escolha exata das palavras certas</li>
+        <li><strong>Naturalidade</strong> — texto fluido, sem rebuscamento</li>
+        <li><strong>Correção</strong> — gramática e ortografia corretas</li>
+      </ul>
+    </div>
+    <div class="topico">
+      <h4>Tipos de documentos profissionais</h4>
+      <p><strong>Memorando</strong> — comunicação interna breve. <strong>Ofício</strong> — comunicação formal com entidades externas. <strong>Relatório</strong> — apresentação de resultados e análises. <strong>Ata</strong> — registro de reunião.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🎤 Apresentações e Oratória</h3>
+    <p class="subtitulo">Falar em público com segurança</p>
+    <div class="topico">
+      <h4>Técnicas de oratória</h4>
+      <ul>
+        <li><strong>Preparação</strong> — conheça profundamente o tema</li>
+        <li><strong>Estrutura</strong> — introdução, desenvolvimento e conclusão</li>
+        <li><strong>Contato visual</strong> — olhe para a audiência, não para o slide</li>
+        <li><strong>Pausa</strong> — use silêncios para dar ênfase</li>
+        <li><strong>Ritmo</strong> — varie a velocidade da fala</li>
+      </ul>
+    </div>
+    <div class="topico">
+      <h4>Lidando com o nervosismo</h4>
+      <p>O nervosismo é natural e pode ser aliado. Respire fundo antes de começar, chegue cedo ao local para se familiarizar e lembre-se: a audiência torce pelo seu sucesso.</p>
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>📱 Comunicação Digital e Redes</h3>
+    <p class="subtitulo">A comunicação no ambiente online</p>
+    <div class="topico">
+      <h4>Netiqueta — etiqueta digital</h4>
+      <ul>
+        <li>Use linguagem adequada ao canal (e-mail ≠ WhatsApp)</li>
+        <li>Responda mensagens profissionais em até 24 horas</li>
+        <li>Evite usar caixa alta (parece gritar)</li>
+        <li>Revise antes de enviar — não há como "desfazer"</li>
+        <li>Cuidado com o tom — texto não transmite emoção</li>
+      </ul>
+    </div>
+    <div class="destaque">
+      💡 Esta intranet é um canal de comunicação interna digital — ela aplica os princípios de comunicação organizacional ao segmentar notícias por unidade e interesse do colaborador.
+    </div>
+  </div>
+
+  <div class="card">
+    <h3>🔗 Referências e Links</h3>
+    <p class="subtitulo">Material de apoio externo</p>
+    <div class="topico">
+      <h4>Leituras e recursos</h4>
+      <ul class="refs">
+        <li><a href="https://www.gov.br/servidor/pt-br/acesso-a-informacao/gestao-de-pessoas/manual-de-redacao" target="_blank">↗ Manual de Redação da Presidência da República</a></li>
+        <li><a href="https://www.ted.com/topics/communication" target="_blank">↗ TED Talks sobre Comunicação</a></li>
+        <li><a href="https://www.youtube.com/watch?v=eIho2S0ZahI" target="_blank">↗ O segredo da comunicação eficaz (YouTube)</a></li>
+        <li><a href="https://www.toastmasters.org" target="_blank">↗ Toastmasters — clube de oratória</a></li>
+        <li><a href="https://www.coursera.org/learn/communication-skills" target="_blank">↗ Habilidades de Comunicação (Coursera)</a></li>
+      </ul>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  async function sair() {
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+    window.location.href = '/';
+  }
+  fetch('/api/me', { credentials: 'include' }).then(r => {
+    if (r.status === 401) window.location.href = '/';
+  });
+</script>
+
+</body>
+</html>

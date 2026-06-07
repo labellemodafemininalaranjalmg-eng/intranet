@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Intranet — Admin</title>
+  <style>
+    body { font-family: sans-serif; background: #f0f2f5; margin: 0; padding: 24px; }
+
+    header {
+      background: white; padding: 16px 24px; border-radius: 12px;
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 24px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    }
+    header h1 { font-size: 18px; color: #333; margin: 0; }
+    .nav a { text-decoration: none; color: #4f46e5; font-size: 14px; margin-left: 16px; }
+    button.sair {
+      background: none; border: 1px solid #ddd; padding: 6px 14px;
+      border-radius: 8px; cursor: pointer; font-size: 13px; color: #666;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #dc2626, #9f1239);
+      border-radius: 12px; padding: 28px 32px; margin-bottom: 24px; color: white;
+    }
+    .hero h2 { font-size: 22px; margin: 0 0 6px; }
+    .hero p { font-size: 14px; opacity: 0.85; margin: 0; }
+
+    .abas {
+      display: flex; gap: 8px; margin-bottom: 24px;
+    }
+    .aba {
+      padding: 10px 20px; border-radius: 8px; border: none;
+      cursor: pointer; font-size: 14px; font-weight: 500;
+      background: white; color: #666;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      transition: all 0.2s;
+    }
+    .aba.ativa { background: #4f46e5; color: white; }
+
+    .painel { display: none; }
+    .painel.ativo { display: block; }
+
+    /* LISTA DE ITENS */
+    .lista { display: flex; flex-direction: column; gap: 12px; }
+
+    .item {
+      background: white; border-radius: 12px; padding: 20px 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    }
+    .item-topo {
+      display: flex; justify-content: space-between; align-items: flex-start;
+    }
+    .item h3 { font-size: 15px; color: #333; margin: 0 0 4px; }
+    .item p { font-size: 13px; color: #888; margin: 0; }
+
+    /* FORMULÁRIO DE EDIÇÃO */
+    .form-edicao {
+      margin-top: 16px; padding-top: 16px;
+      border-top: 1px solid #f0f0f0;
+      display: none;
+    }
+    .form-edicao.aberto { display: block; }
+
+    .form-edicao label {
+      display: block; font-size: 12px; color: #888;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      margin-bottom: 4px; margin-top: 12px;
+    }
+    .form-edicao input,
+    .form-edicao textarea {
+      width: 100%; box-sizing: border-box;
+      border: 1px solid #ddd; border-radius: 8px;
+      padding: 10px; font-size: 13px; font-family: sans-serif; color: #333;
+    }
+    .form-edicao textarea { min-height: 80px; resize: vertical; }
+
+    .botoes { display: flex; gap: 8px; margin-top: 16px; }
+
+    button.editar {
+      background: none; border: 1px solid #4f46e5; color: #4f46e5;
+      padding: 6px 14px; border-radius: 8px; cursor: pointer; font-size: 12px;
+    }
+    button.salvar {
+      background: #4f46e5; color: white; border: none;
+      padding: 8px 20px; border-radius: 8px; cursor: pointer; font-size: 13px;
+    }
+    button.cancelar {
+      background: none; border: 1px solid #ddd; color: #888;
+      padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 13px;
+    }
+    .salvo { font-size: 12px; color: green; margin-left: 8px; display: none; }
+
+    .tag {
+      font-size: 11px; background: #eef2ff; color: #4f46e5;
+      padding: 2px 10px; border-radius: 20px; display: inline-block; margin: 2px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>🏫 Intranet</h1>
+  <nav class="nav">
+    <a href="/dashboard">Dashboard</a>
+    <a href="/disciplinas">Disciplinas</a>
+    <a href="/noticias">Notícias</a>
+    <a href="/admin">⚙️ Admin</a>
+  </nav>
+  <button class="sair" onclick="sair()">Sair</button>
+</header>
+
+<div class="hero">
+  <h2>⚙️ Painel Administrativo</h2>
+  <p>Edite notícias e disciplinas diretamente pelo navegador.</p>
+</div>
+
+<!-- ABAS -->
+<div class="abas">
+  <button class="aba ativa" onclick="trocarAba('noticias', this)">📰 Notícias</button>
+  <button class="aba" onclick="trocarAba('disciplinas', this)">📚 Disciplinas</button>
+</div>
+
+<!-- PAINEL NOTÍCIAS -->
+<div class="painel ativo" id="painel-noticias">
+  <div class="lista" id="lista-noticias">
+    <p style="color:#999">Carregando...</p>
+  </div>
+</div>
+
+<!-- PAINEL DISCIPLINAS -->
+<div class="painel" id="painel-disciplinas">
+  <div class="lista" id="lista-disciplinas">
+    <p style="color:#999">Carregando...</p>
+  </div>
+</div>
+
+<script>
+  // ── ABAS ──────────────────────────────────
+  function trocarAba(nome, btn) {
+    document.querySelectorAll('.painel').forEach(p => p.classList.remove('ativo'));
+    document.querySelectorAll('.aba').forEach(b => b.classList.remove('ativa'));
+    document.getElementById('painel-' + nome).classList.add('ativo');
+    btn.classList.add('ativa');
+  }
+
+  // ── TOGGLE FORMULÁRIO ─────────────────────
+  function toggleForm(id) {
+    const form = document.getElementById('form-' + id);
+    form.classList.toggle('aberto');
+  }
+
+  // ── NOTÍCIAS ──────────────────────────────
+  async function carregarNoticias() {
+    const resp = await fetch('/api/noticias', { credentials: 'include' });
+    const noticias = await resp.json();
+    const lista = document.getElementById('lista-noticias');
+
+    lista.innerHTML = noticias.map(n => `
+      <div class="item">
+        <div class="item-topo">
+          <div>
+            <h3>${n.titulo}</h3>
+            <p>${(n.tags || []).map(t => `<span class="tag">${t}</span>`).join('')}</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px">
+  <button class="editar" onclick="toggleDestaque(${n.id}, this)" 
+    style="${n.destaque ? 'background:#fef9c3;border-color:#eab308;color:#854d0e' : ''}">
+    ${n.destaque ? '📌 Em destaque' : '☆ Destacar'}
+  </button>
+  <button class="editar" onclick="toggleForm('noticia-${n.id}')">✏️ Editar</button>
+</div>
+        <div class="form-edicao" id="form-noticia-${n.id}">
+          <label>Título</label>
+          <input id="titulo-${n.id}" value="${n.titulo}">
+
+          <label>Conteúdo</label>
+          <textarea id="conteudo-${n.id}">${n.conteudo || ''}</textarea>
+
+          <label>Tags (separadas por vírgula)</label>
+          <input id="tags-${n.id}" value="${(n.tags || []).join(', ')}">
+
+          <div class="botoes">
+            <button class="salvar" onclick="salvarNoticia(${n.id})">Salvar</button>
+            <button class="cancelar" onclick="toggleForm('noticia-${n.id}')">Cancelar</button>
+            <span class="salvo" id="salvo-noticia-${n.id}">✓ Salvo!</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function salvarNoticia(id) {
+    const titulo = document.getElementById('titulo-' + id).value;
+    const conteudo = document.getElementById('conteudo-' + id).value;
+    const tags = document.getElementById('tags-' + id).value
+      .split(',').map(t => t.trim()).filter(Boolean);
+
+    const resp = await fetch(`/api/admin/noticias/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ titulo, conteudo, tags }),
+      credentials: 'include'
+    });
+
+    if (resp.ok) {
+      const salvo = document.getElementById('salvo-noticia-' + id);
+      salvo.style.display = 'inline';
+      setTimeout(() => { salvo.style.display = 'none'; carregarNoticias(); }, 1500);
+    }
+  }
+
+  // ── DISCIPLINAS ───────────────────────────
+  async function carregarDisciplinas() {
+    const resp = await fetch('/api/disciplinas', { credentials: 'include' });
+    const disciplinas = await resp.json();
+    const lista = document.getElementById('lista-disciplinas');
+
+    lista.innerHTML = disciplinas.map(d => `
+      <div class="item">
+        <div class="item-topo">
+          <div>
+            <h3>${d.icone} ${d.nome}</h3>
+            <p style="font-size:13px;color:#888">${d.descricao}</p>
+          </div>
+          <button class="editar" onclick="toggleForm('disc-${d.id}')">✏️ Editar</button>
+        </div>
+
+        <div class="form-edicao" id="form-disc-${d.id}">
+          <label>Temas (um por linha)</label>
+          <textarea id="temas-${d.id}">${(d.temas || []).join('\n')}</textarea>
+
+          <label>Materiais — formato: Nome | URL (um por linha)</label>
+          <textarea id="materiais-${d.id}">${(d.materiais || []).map(m => m.titulo + ' | ' + m.url).join('\n')}</textarea>
+
+          <div class="botoes">
+            <button class="salvar" onclick="salvarDisciplina(${d.id})">Salvar</button>
+            <button class="cancelar" onclick="toggleForm('disc-${d.id}')">Cancelar</button>
+            <span class="salvo" id="salvo-disc-${d.id}">✓ Salvo!</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  }
+
+  async function salvarDisciplina(id) {
+    const temas = document.getElementById('temas-' + id).value
+      .split('\n').map(t => t.trim()).filter(Boolean);
+
+    const materiais = document.getElementById('materiais-' + id).value
+      .split('\n').map(linha => {
+        const partes = linha.split('|').map(p => p.trim());
+        return { titulo: partes[0], url: partes[1] || '#' };
+      }).filter(m => m.titulo);
+
+    const resp = await fetch(`/api/admin/disciplinas/${id}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ temas, materiais }),
+      credentials: 'include'
+    });
+
+    if (resp.ok) {
+      const salvo = document.getElementById('salvo-disc-' + id);
+      salvo.style.display = 'inline';
+      setTimeout(() => { salvo.style.display = 'none'; carregarDisciplinas(); }, 1500);
+    }
+  }
+
+  async function toggleDestaque(id, btn) {
+  const resp = await fetch(`/api/admin/noticias/${id}/destaque`, {
+    method: 'POST',
+    credentials: 'include'
+  });
+  if (resp.ok) {
+    carregarNoticias();
+  }
+}
+
+  // ── INIT ──────────────────────────────────
+  async function sair() {
+    await fetch('/api/logout', { method: 'POST', credentials: 'include' });
+    window.location.href = '/';
+  }
+
+  async function init() {
+    const resp = await fetch('/api/admin/verificar', { credentials: 'include' });
+    if (resp.status === 401) { window.location.href = '/'; return; }
+    const dados = await resp.json();
+    if (!dados.admin) { window.location.href = '/dashboard'; return; }
+    carregarNoticias();
+    carregarDisciplinas();
+  }
+
+  init();
+</script>
+</body>
+</html>
